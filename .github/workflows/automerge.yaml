@@ -1,4 +1,4 @@
-name: PRs to master
+name: Backmerge release to master
 on: 
   pull_request:
     branches: [release*]
@@ -18,10 +18,10 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
-    - name: Merge master back to dev
+    - name: Merge release back to master
       run: |
           git fetch --unshallow
           git checkout master
           git pull
-          git merge --no-ff ${{ steps.extract_branch.outputs.branch }} -m "Auto-merge master back to dev"
+          git merge --no-ff ${{ steps.extract_branch.outputs.branch }} -m "Auto-merge release back to master"
           git push
