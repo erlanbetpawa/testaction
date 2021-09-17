@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: print
         run: echo "first string" 
+        run: echo "second run"
+        
