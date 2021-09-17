@@ -1,0 +1,19 @@
+name: build for PR
+
+on: 
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: echo "building stage"
+      - name: "testing named step"
+        run: echo "this is named echo task" 
+        
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "this is PR test"
+      

@@ -1,0 +1,13 @@
+name: test different options
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: echo "first string" 
+      - run: echo "second run"
+        
