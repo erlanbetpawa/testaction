@@ -21,5 +21,3 @@ jobs:
       - run: echo "this is PR test"
       - name: "second"
         run: echo mecho techo
-      - name: "this should fail definitely"
-        run: test mest pest 
