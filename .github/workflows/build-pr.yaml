@@ -13,6 +13,8 @@ jobs:
       - run: echo "building stage"
       - name: "testing named step"
         run: echo "this is named echo task" 
+      - name: "this should fail definitely"
+        run: test mest pest
         
   test:
     runs-on: ubuntu-latest
