@@ -16,8 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: echo "building stage"
-      - name: "testing named step"
+      - name: "named step"
         run: echo "this is named echo task" 
+      - name: "show github.event context"
+        run: echo "${{github.event}}"
+      - name: "show github.event_name param"
+        run: echo "${{github.event_name}}"
+      - name: "print if run manually"
+        run: echo "This was run manually"
+        if: github.event_name == 'workflow_dispatch'
+      - name: "print current branch name"
+        run: echo "${GITHUB_REF#refs/heads/}"
+
 
         
   test:
