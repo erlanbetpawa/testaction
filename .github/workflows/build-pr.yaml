@@ -19,7 +19,10 @@ jobs:
       - name: "named step"
         run: echo "this is named echo task" 
       - name: "show github.event context"
-        run: echo "$github.event_name"
+        run: echo "${{github.event}}"
+      - name: "show github.event_name param"
+        run: echo "${{github.event_name}}"
+
 
         
   test:
