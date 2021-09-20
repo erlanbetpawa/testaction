@@ -28,7 +28,7 @@ jobs:
       - name: "print current branch name"
         run: |
           BRANCH = "${GITHUB_REF#refs/heads/}"
-          echo $BRANCH
+          echo ${BRANCH}
 
 
         
