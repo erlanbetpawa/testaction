@@ -16,8 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: echo "building stage"
-      - name: "testing named step"
+      - name: "named step"
         run: echo "this is named echo task" 
+      - name: "show github.event context"
+        run: echo $github.event
 
         
   test:
