@@ -1,5 +1,8 @@
 name: build for PR
 
+env:
+  BRANCH_NAME1: $(echo ${GITHUB_REF#refs/heads/} | tr / -)
+  BRANCH_NAME2: ${{GITHUB_REF#refs/heads/}}
 on: 
   workflow_dispatch:
     inputs:
@@ -27,8 +30,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
       - name: "print current branch name"
         run: |
-          BRANCH = "${GITHUB_REF#refs/heads/}"
-          echo ${BRANCH}
+          echo "${{ env.BRANCH_NAME1 }}
+          echo "${{ env.BRANCH_NAME2 }}
 
 
         
