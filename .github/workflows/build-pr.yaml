@@ -2,6 +2,11 @@ name: build for PR
 
 on: 
   workflow_dispatch:
+    inputs:
+      Environment: 
+        description: "Environment"
+        required: true
+        default: 'test'
   pull_request:
     branches: [master]
   
@@ -21,3 +26,6 @@ jobs:
       - run: echo "this is PR test"
       - name: "second"
         run: echo mecho techo
+      - name: "Conditional doesn't work if it's master branch and input is test or develop"
+        run: echo ===============conditional================
+        if: contains(github.ref, 'master') || (github.event.inputs.Environment != 'test' && github.event.inputs.Environment != 'develop')
