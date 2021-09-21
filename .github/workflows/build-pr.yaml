@@ -1,7 +1,4 @@
 name: build for PR
-
-env:
-  BRANCH_NAME1: $(echo ${GITHUB_REF#refs/heads/} | tr / -)
   
 on: 
   workflow_dispatch:
@@ -14,6 +11,21 @@ on:
     branches: [master]
   
 jobs:
+  initialization:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
+      - name: Debug
+        run: echo ${{ env.BRANCH_NAME }}
   build:
     runs-on: ubuntu-latest
     steps:
@@ -30,8 +42,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
       - name: "print current branch name"
         run: |
-          echo "${{ env.BRANCH_NAME1 }}
-          echo "${{ env.BRANCH_NAME2 }}
+          echo ${{ env.BRANCH_NAME }}
 
 
         
