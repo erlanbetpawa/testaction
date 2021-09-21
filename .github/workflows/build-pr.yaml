@@ -13,21 +13,24 @@ on:
 jobs:
   initialization:
     runs-on: ubuntu-latest
+    outputs: 
+      branchName: ${{ steps.setupBranchName.outputs.branchName }}
     steps:
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
-        shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
-
       - name: Get branch name (pull request)
         if: github.event_name == 'pull_request'
-        shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+      - name: Set up branch_name output
+        id: setupBranchName
+        run: |
+          echo ${{ env.BRANCH_NAME }}
+          echo "::set-output name=branchName::${{ env.BRANCH_NAME }}"
 
-      - name: Debug
-        run: echo ${{ env.BRANCH_NAME }}
   build:
     runs-on: ubuntu-latest
+    needs: initialization
     steps:
       - uses: actions/checkout@v1
       - run: echo "building stage"
@@ -42,7 +45,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
       - name: "print current branch name"
         run: |
-          echo ${{ env.BRANCH_NAME }}
+          echo "${{ needs.initalization.outputs.branchName }}"
 
 
         
