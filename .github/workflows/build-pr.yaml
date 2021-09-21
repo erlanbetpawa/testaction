@@ -27,6 +27,8 @@ jobs:
         run: |
           echo ${{ env.BRANCH_NAME }}
           echo "::set-output name=branchName::${{ env.BRANCH_NAME }}"
+        env:
+          DOCKER_CLI_EXPERIMENTAL: enabled
 
   build:
     runs-on: ubuntu-latest
