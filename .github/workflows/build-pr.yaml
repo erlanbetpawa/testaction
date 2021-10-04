@@ -46,6 +46,7 @@ jobs:
       - name: "print current branch name"
         run: |
           echo "${{ needs.initialization.outputs.branchName }}"
+      - uses: actions/checkout@v2
       - name: TEST COMPOSITE ACTION
         uses: erlanbetpawa/testaction@v1
         with: 
