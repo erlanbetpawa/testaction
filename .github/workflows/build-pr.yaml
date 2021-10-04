@@ -48,7 +48,7 @@ jobs:
           echo "${{ needs.initialization.outputs.branchName }}"
       - uses: actions/checkout@v2
       - name: TEST COMPOSITE ACTION
-        uses: erlanbetpawa/testaction@v1
+        uses: erlanbetpawa/testaction@master
         with: 
           registry_username: ${{secrets.REGISTRY_USERNAME}}
           registry_password: ${{secrets.REGISTRY_PASSWORD}}
