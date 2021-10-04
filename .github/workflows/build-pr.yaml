@@ -46,6 +46,11 @@ jobs:
       - name: "print current branch name"
         run: |
           echo "${{ needs.initialization.outputs.branchName }}"
+      - name: TEST COMPOSITE ACTION
+        uses: erlanbetpawa/testaction@v1
+        with: 
+          registry_username: ${{secrets.REGISTRY_USERNAME}}
+          registry_password: ${{secrets.REGISTRY_PASSWORD}}
 
         
   test:
