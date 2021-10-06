@@ -53,6 +53,10 @@ jobs:
           registry_username: ${{secrets.REGISTRY_USERNAME}}
           registry_password: ${{secrets.REGISTRY_PASSWORD}}
 
+  testIf: 
+    runs-on: ubuntu-latest
+    steps:
+      - run: [[ -v ${{github.event.release.tag_name}} ]] && echo "test text"
         
   test:
     runs-on: ubuntu-latest
