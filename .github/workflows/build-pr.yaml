@@ -58,7 +58,7 @@ jobs:
   testIf: 
     runs-on: ubuntu-latest
     steps:
-      - run: '[[ -n "${{github.event.release.tag_name}}" ]] && echo "test variable"'
+      - run: '[[ -n "${{github.event.release.tag_name}}" ]] && echo "test variable" || true '
         
   test:
     runs-on: ubuntu-latest
