@@ -56,9 +56,7 @@ jobs:
   testIf: 
     runs-on: ubuntu-latest
     steps:
-      - run: |
-        npm install
-        [[ "${{ inputs.package }}" = true ]] && npm run package || true
+      - run: if [[-v test_var ]] && echo 'test variable'
         
   test:
     runs-on: ubuntu-latest
