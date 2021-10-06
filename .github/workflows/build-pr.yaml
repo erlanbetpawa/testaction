@@ -59,6 +59,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: '[[ -n "${{github.event.release.tag_name}}" ]] && echo "test variable" || true '
+      - shell: bash
+        run: |
+          if [[ -n "${{github.event.release.tag_name}}" ]]; then
+          echo ifinside1
+          echo ifinside2
+          fi
         
   test:
     runs-on: ubuntu-latest
