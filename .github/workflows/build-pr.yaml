@@ -57,7 +57,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-        [[ -v github.event.release.tag_name ]] && echo 'test'
+        npm install
+        [[ "${{ inputs.package }}" = true ]] && npm run package || true
         
   test:
     runs-on: ubuntu-latest
