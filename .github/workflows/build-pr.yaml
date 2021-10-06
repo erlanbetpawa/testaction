@@ -52,8 +52,8 @@ jobs:
       - name: TEST COMPOSITE ACTION
         uses: erlanbetpawa/testaction@v2
         with: 
-          registry_username: ${{secrets.REGISTRY_USERNAME}}
-          registry_password: ${{secrets.REGISTRY_PASSWORD}}
+          registry_username: reg_username
+          registry_password: reg_password
 
   testIf: 
     runs-on: ubuntu-latest
